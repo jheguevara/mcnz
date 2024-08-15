@@ -2,6 +2,7 @@
 companyname: Align HCM
 tagline: "UKG Simplified"
 tagline-subheading: "STRATEGY | SERVICES | SUPPORT"
+call-to-action-01: LET'S WORK TOGETHER
 title: "", 
 description: "", 
 firstHeading: "", 
