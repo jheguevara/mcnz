@@ -9,16 +9,16 @@ feature-01: Feature One
 feature-description-01: Feature one description
 feature-02: Feature Two
 feature-description-02: Feature Two description
-feature-04: Feature Three
+feature-03: Feature Three
 feature-description-03: Feature Three description
 number-01: 66
 number-description-01: "Mario Lemiex"
 number-02: 88
 number-description-02: "Eric Lindross"
-number-01: 99
-number-description-01: "Wayne Gretzky"
-number-01: 7
-number-description-01: "Tim Horton"
+number-03: 99
+number-description-03: "Wayne Gretzky"
+number-04: 7
+number-description-04: "Tim Horton"
 address: "85 Clover Ridge Dr E, Ajax, ON"
 phone-01: "289 314-5715"
 phone-02: "905 555-1212"
