@@ -13,5 +13,5 @@ firstProduct: "",
 firstProductDescription: "", 
 secondProduct: "", 
 secondProductDescription: ""
-layout: blue-xpeedo
+layout: green-xpeedo
 ---
