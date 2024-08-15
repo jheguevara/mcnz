@@ -24,5 +24,5 @@ phone-01: "289 314-5715"
 phone-02: "905 555-1212"
 email-01: sales@mcnz.ca
 email-01: support@mcnz.ca
-layout: green-xpeedo
+layout: blue-xpeedo
 ---
