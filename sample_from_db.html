@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Front Matter Example</title>
+</head>
+<body>
+    <h1 id="post-title">Loading...</h1>
+    <p id="post-date">Loading...</p>
+    <p id="post-categories">Loading...</p>
+    <p id="post-tags">Loading...</p>
+
+    <script>
+        async function fetchFrontMatter() {
+            try {
+                const response = await fetch('http://localhost:5001/get-front-matter');
+                const data = await response.json();
+
+                // Insert the front matter data into the HTML
+                document.getElementById('post-title').textContent = data.title;
+                document.getElementById('post-date').textContent = `Date: ${data.date}`;
+                document.getElementById('post-categories').textContent = `Categories: ${data.categories}`;
+                document.getElementById('post-tags').textContent = `Tags: ${data.tags.join(', ')}`;
+            } catch (error) {
+                console.error('Error fetching front matter:', error);
+            }
+        }
+
+        // Fetch the front matter when the page loads
+        fetchFrontMatter();
+    </script>
+</body>
+</html>
