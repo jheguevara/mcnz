@@ -1,34 +1,517 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="no-js" lang="zxx">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynamic Front Matter Example</title>
-</head>
-<body>
-    <h1 id="post-title">Loading...</h1>
-    <p id="post-date">Loading...</p>
-    <p id="post-categories">Loading...</p>
-    <p id="post-tags">Loading...</p>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-179472407-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-179472407-1');
+    </script>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="robots" content="index, follow" />
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Welcome to Our Company.</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.svg" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap"
+        rel="stylesheet">
+
+    <!-- ========================= CSS here ========================= -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/css/LineIcons.2.0.css" />
+    <link rel="stylesheet" href="assets/css/animate.css" />
+    <link rel="stylesheet" href="assets/css/tiny-slider.css" />
+    <link rel="stylesheet" href="assets/css/glightbox.min.css" />
+    <link rel="stylesheet" href="assets/css/main.css" />
 
     <script>
-        async function fetchFrontMatter() {
-            try {
-                const response = await fetch('http://localhost:5001/api/get-front-matter');
-                const data = await response.json();
+        // Fetch the front matter data from an API endpoint and update the page content
+        document.addEventListener('DOMContentLoaded', function () {
+            fetch('http://localhost:5001/api/get-front-matter')
+                .then(response => response.json())
+                .then(data => {
+                    // Update text content
+                    document.title = `Welcome to ${data.companyname}.`;
+                    document.querySelector('.navbar-brand .primary-logo').setAttribute('src', data.logoPrimary);
+                    document.querySelector('.navbar-brand .alt-logo').setAttribute('src', data.logoAlt);
+                    document.querySelector('h5').textContent = `Introducing ${data.companyname}`;
+                    document.querySelector('h1').textContent = data.tagline;
+                    document.querySelector('p.tagline-subheading').textContent = data.taglineSubheading;
+                    document.querySelector('a.btn.page-scroll').textContent = data.callToAction01;
 
-                // Insert the front matter data into the HTML
-                document.getElementById('post-title').textContent = data.title;
-                document.getElementById('post-date').textContent = `Date: ${data.date}`;
-                document.getElementById('post-categories').textContent = `Categories: ${data.categories}`;
-                document.getElementById('post-tags').textContent = `Tags: ${data.tags.join(', ')}`;
-            } catch (error) {
-                console.error('Error fetching front matter:', error);
-            }
-        }
+                    // Update features
+                    document.querySelector('.features-heading').textContent = data.featuresHeading;
+                    document.querySelector('.features-description').textContent = data.featuresDescription;
+                    document.querySelector('.feature-01').textContent = data.feature01;
+                    document.querySelector('.feature-description-01').textContent = data.featureDescription01;
+                    document.querySelector('.feature-02').textContent = data.feature02;
+                    document.querySelector('.feature-description-02').textContent = data.featureDescription02;
+                    document.querySelector('.feature-03').textContent = data.feature03;
+                    document.querySelector('.feature-description-03').textContent = data.featureDescription03;
 
-        // Fetch the front matter when the page loads
-        fetchFrontMatter();
+                    // Update achievement section
+                    document.querySelector('#secondo1').textContent = data.number01;
+                    document.querySelector('.number-description-01').textContent = data.numberDescription01;
+                    document.querySelector('#secondo2').textContent = data.number02;
+                    document.querySelector('.number-description-02').textContent = data.numberDescription02;
+                    document.querySelector('#secondo3').textContent = data.number03;
+                    document.querySelector('.number-description-03').textContent = data.numberDescription03;
+                    document.querySelector('#secondo4').textContent = data.number04;
+                    document.querySelector('.number-description-04').textContent = data.numberDescription04;
+
+                    // Update contact info
+                    document.querySelector('.companyname').textContent = data.companyname;
+                    document.querySelector('.address').textContent = data.address;
+                    document.querySelector('.phone').textContent = data.phone;
+                    document.querySelector('.email').textContent = data.email;
+
+                    // Update footer
+                    document.querySelector('.footer .logo').textContent = data.companyname;
+                    document.querySelector('.footer .tagline').textContent = data.tagline;
+                })
+                .catch(error => console.error('Error fetching front matter data:', error));
+        });
+    </script>
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div class="preloader style2">
+        <div class="preloader-inner">
+            <div class="preloader-icon">
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+    <!-- /End Preloader -->
+
+    <!-- Start Header Area -->
+    <header class="header style2">
+        <div class="navbar-area">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-12">
+                        <nav class="navbar navbar-expand-lg">
+                            <a class="navbar-brand logo" href="index.html">
+                                <img class="primary-logo" src="assets/images/logo/white-logo.svg" alt="Logo" />
+                                <img class="alt-logo" src="assets/images/logo/logo2.svg" alt="Logo" />
+                            </a>
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
+                                <ul id="nav" class="navbar-nav me-auto">
+                                    <li class="nav-item">
+                                        <a class="page-scroll active" href="#hero-area">Home</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="page-scroll" href="#features">Features</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="page-scroll" href="#explore">Explore</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="page-scroll" href="#testimonials">Testimonials</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="page-scroll" href="#download">Download</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="page-scroll" href="#contact">Contact</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- navbar collapse -->
+                            <div class="button">
+                                <a href="#download" class="btn page-scroll">Get Started</a>
+                            </div>
+                        </nav>
+                        <!-- navbar -->
+                    </div>
+                </div>
+                <!-- row -->
+            </div>
+            <!-- container -->
+        </div>
+        <!-- navbar area -->
+    </header>
+    <!-- End Header Area -->
+
+    <!-- Start Hero Area -->
+    <section id="hero-area" class="hero-area style2">
+        <!-- Single Slider -->
+        <div class="hero-inner style2">
+            <div class="container">
+                <div class="row ">
+                    <div class="col-lg-8 offset-lg-2 co-12">
+                        <div class="home-slider">
+                            <div class="hero-text">
+                                <h5 class="wow fadeInUp" data-wow-delay=".3s"></h5>
+                                <h1 class="wow fadeInUp" data-wow-delay=".5s"></h1>
+                                <p class="wow fadeInUp tagline-subheading" data-wow-delay=".7s"></p>
+                                <div class="button wow fadeInUp" data-wow-delay=".9s">
+                                    <a href="#" class="btn page-scroll"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-8 offset-lg-2 col-12">
+                        <div class="hero-image">
+                            <img src="https://via.placeholder.com/900x550" alt="#">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/ End Single Slider -->
+    </section>
+    <!--/ End Hero Area -->
+
+    <!-- Start Clients Area -->
+    <section class="clients style2 section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2>Happy Customers Using <span class="companyname"></span></h2>
+                    <!-- Start Single Clients -->
+                    <div class="single-client">
+                        <img src="https://via.placeholder.com/230x95" alt="#">
+                    </div>
+                    <!-- End Single Clients -->
+                    <!-- Repeat for other clients... -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /End Clients Area -->
+
+    <!-- Work Process Area -->
+    <section class="work-process section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-title style2">
+                        <span class="wow fadeInDown" data-wow-delay=".2s">Features</span>
+                        <h2 class="wow fadeInUp features-heading" data-wow-delay=".4s"></h2>
+                        <p class="wow fadeInUp features-description" data-wow-delay=".6s"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-12">
+                    <!-- Single Process -->
+                    <div class="single-process wow fadeInUp" data-wow-delay=".2s">
+                        <div class="icon">
+                            <div class="main-icon">
+                                <i class="lni lni-pencil"></i>
+                            </div>
+                            <span>01</span>
+                        </div>
+                        <h3 class="feature-01"></h3>
+                        <p class="feature-description-01"></p>
+                    </div>
+                    <!-- End Single Process -->
+                </div>
+                <div class="col-lg-4 col-md-4 col-12">
+                    <!-- Single Process -->
+                    <div class="single-process wow fadeInUp" data-wow-delay=".4s">
+                        <div class="icon">
+                            <div class="main-icon">
+                                <i class="lni lni-layout"></i>
+                            </div>
+                            <span>02</span>
+                        </div>
+                        <h3 class="feature-02"></h3>
+                        <p class="feature-description-02"></p>
+                    </div>
+                    <!-- End Single Process -->
+                </div>
+                <div class="col-lg-4 col-md-4 col-12">
+                    <!-- Single Process -->
+                    <div class="single-process wow fadeInUp" data-wow-delay=".6s">
+                        <div class="icon">
+                            <div class="main-icon">
+                                <i class="lni lni-thunder-alt"></i>
+                            </div>
+                            <span>03</span>
+                        </div>
+                        <h3 class="feature-03"></h3>
+                        <p class="feature-description-03"></p>
+                    </div>
+                    <!-- End Single Process -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Work Process Area -->
+
+    <!-- Start Achivement Area -->
+    <section class="our-achievement style2 section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-12">
+                    <div class="single-achievement wow fadeInUp" data-wow-delay=".2s">
+                        <i class="lni lni-user"></i>
+                        <h3 class="counter"><span id="secondo1" class="countup"></span></h3>
+                        <p class="number-description-01"></p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-12">
+                    <div class="single-achievement wow fadeInUp" data-wow-delay=".4s">
+                        <i class="lni lni-users"></i>
+                        <h3 class="counter"><span id="secondo2" class="countup"></span></h3>
+                        <p class="number-description-02"></p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-12">
+                    <div class="single-achievement wow fadeInUp" data-wow-delay=".6s">
+                        <i class="lni lni-code"></i>
+                        <h3 class="counter"><span id="secondo3" class="countup"></span></h3>
+                        <p class="number-description-03"></p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-12">
+                    <div class="single-achievement wow fadeInUp" data-wow-delay=".8s">
+                        <i class="lni lni-coffee-cup"></i>
+                        <h3 class="counter"><span id="secondo4" class="countup"></span></h3>
+                        <p class="number-description-04"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Achivement Area -->
+
+    <!-- Start Contact Area -->
+    <section id="contact" class="contact-us style2 section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-title style2">
+                        <span class="wow fadeInDown" data-wow-delay=".2s">Contact <span class="companyname"></span></span>
+                        <h2 class="wow fadeInUp" data-wow-delay=".4s">Let’s cooperate!</h2>
+                        <p class="wow fadeInUp" data-wow-delay=".6s">There are many variations of passages of Lorem
+                            Ipsum available, but the majority have suffered alteration in some form.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-head">
+                <div class="inner-content">
+                    <div class="row">
+                        <div class="col-lg-8 col-12">
+                            <div class="form-main">
+                                <form class="form" method="post" action="assets/mail/mail.php">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6 col-12">
+                                            <div class="form-group">
+                                                <input name="name" type="text" placeholder="Your Name"
+                                                    required="required">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-12">
+                                            <div class="form-group">
+                                                <input name="subject" type="text" placeholder="Your Subject"
+                                                    required="required">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-12">
+                                            <div class="form-group">
+                                                <input name="email" type="email" placeholder="Your Email"
+                                                    required="required">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-12">
+                                            <div class="form-group">
+                                                <input name="phone" type="text" placeholder="Your Phone"
+                                                    required="required">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group message">
+                                                <textarea name="message" placeholder="Your Message"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group button style2">
+                                                <button type="submit" class="btn ">Send Message</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-12">
+                            <div class="contact-info">
+                                <div class="single-head">
+                                    <div class="single-info">
+                                        <i class="lni lni-map-marker"></i>
+                                        <ul>
+                                            <li><span>Location</span></li>
+                                            <li class="address"></li>
+                                        </ul>
+                                    </div>
+                                    <div class="single-info">
+                                        <i class="lni lni-phone"></i>
+                                        <ul>
+                                            <li><span>Call Us</span></li>
+                                            <li><a href="#" class="phone"></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="single-info">
+                                        <i class="lni lni-envelope"></i>
+                                        <ul>
+                                            <li><span>Mail Us</span></li>
+                                            <li><a href="mailto:" class="email"></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--/ End Contact Area -->
+
+    <!-- Start Footer Area -->
+    <footer class="footer style2">
+        <div class="footer-middle">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-12">
+                        <!-- Single Widget -->
+                        <div class="f-about single-footer">
+                            <div class="logo companyname"></div>
+                            <p class="tagline"></p>
+                            <div class="footer-social">
+                                <ul>
+                                    <li><a href="#"><i class="lni lni-facebook-original"></i></a></li>
+                                    <li><a href="#"><i class="lni lni-twitter-original"></i></a></li>
+                                    <li><a href="#"><i class="lni lni-linkedin-original"></i></a></li>
+                                    <li><a href="#"><i class="lni lni-google"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- End Single Widget -->
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-12">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-6 col-12">
+                                <!-- Single Widget -->
+                                <div class="single-footer sm-custom-border f-link">
+                                    <h3>About Us</h3>
+                                    <ul>
+                                        <li><a href="#">Home</a></li>
+                                        <li><a href="#">Features</a></li>
+                                        <li><a href="#">Explore</a></li>
+                                        <li><a href="#">Testimonials</a></li>
+                                    </ul>
+                                </div>
+                                <!-- End Single Widget -->
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-12">
+                                <!-- Single Widget -->
+                                <div class="single-footer sm-custom-border f-link">
+                                    <h3>Features</h3>
+                                    <ul>
+                                        <li><a href="#" class="feature-01"></a></li>
+                                        <li><a href="#" class="feature-02"></a></li>
+                                        <li><a href="#" class="feature-03"></a></li>
+                                        <li><a href="#" class="feature-04"></a></li>
+                                    </ul>
+                                </div>
+                                <!-- End Single Widget -->
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-12">
+                                <!-- Single Widget -->
+                                <div class="single-footer md-custom-border sm-custom-border f-link">
+                                    <h3>Services</h3>
+                                    <ul>
+                                        <li><a href="#" class="service-01"></a></li>
+                                        <li><a href="#" class="service-02"></a></li>
+                                        <li><a href="#" class="service-03"></a></li>
+                                        <li><a href="#" class="service-04"></a></li>
+                                    </ul>
+                                </div>
+                                <!-- End Single Widget -->
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-12">
+                                <!-- Single Widget -->
+                                <div class="single-footer md-custom-border sm-custom-border f-contact">
+                                    <h3>Contact Info</h3>
+                                    <ul>
+                                        <li><i class="lni lni-map-marker"></i> <span class="address"></span></li>
+                                        <li><i class="lni lni-envelope"></i> <span class="email"></span></li>
+                                        <li><i class="lni lni-phone"></i> <span class="phone"></span></li>
+                                    </ul>
+                                </div>
+                                <!-- End Single Widget -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/ End Footer Middle -->
+        <!-- Start Footer Bottom -->
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="inner">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="left">
+                                <p>Designed and Developed by <a href="https://graygrids.com/" rel="nofollow"
+                                        target="_blank">GrayGrids</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Footer Bottom -->
+    </footer>
+    <!--/ End Footer Area -->
+
+    <!-- ========================= scroll-top ========================= -->
+    <a href="#" class="scroll-top style2 btn-hover">
+        <i class="lni lni-chevron-up"></i>
+    </a>
+
+    <!-- ========================= JS here ========================= -->
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/count-up.min.js"></script>
+    <script src="assets/js/wow.min.js"></script>
+    <script src="assets/js/tiny-slider.js"></script>
+    <script src="assets/js/glightbox.min.js"></script>
+    <script src="assets/js/imagesloaded.min.js"></script>
+    <script src="assets/js/isotope.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script type="text/javascript">
+        //========= glightbox
+        GLightbox({
+            'href': 'https://www.youtube.com/watch?v=r44RKWyfcFw&fbclid=IwAR21beSJORalzmzokxDRcGfkZA1AtRTE__l5N4r09HcGS5Y6vOluyouM9EM',
+            'type': 'video',
+            'source': 'youtube', //vimeo, youtube or local
+            'width': 900,
+            'autoplayVideos': true,
+        });
     </script>
 </body>
+
 </html>
