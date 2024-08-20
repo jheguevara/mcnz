@@ -3,31 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login with Okta</title>
+    <title>Login with Auth0</title>
 </head>
 <body>
-    <h1>Login with Okta</h1>
+    <h1>Login with Auth0</h1>
     <button id="login-btn">Login</button>
 
-    <!-- Load Okta Auth JS from the correct CDN -->
-    <script src="https://global.oktacdn.com/okta-auth-js/6.6.0/okta-auth-js.min.js"></script>
+    <!-- Include the Auth0 JS SDK -->
+    <script src="https://cdn.auth0.com/js/auth0-spa-js/1.19/auth0-spa-js.production.js"></script>
     <script>
-        // Instantiate OktaAuth directly
-        const oktaAuth = new OktaAuth({
-            clientId: 'YOUR_CLIENT_ID',
-            issuer: 'YOUR_ISSUER_URL',
-            redirectUri: 'http://localhost:3000/callback'
+        // Create an instance of Auth0
+        const auth0 = await createAuth0Client({
+            domain: 'dev-qirtwh6cktfuc8ap.us.auth0.com', // Your Auth0 domain
+            client_id: 'CmiF5zKFREhl7eEmcL8p2z5vkU8Fbzk5', // Your Auth0 client ID
+            redirect_uri: window.location.origin + '/callback' // Adjust the redirect URI as needed
         });
 
         document.getElementById('login-btn').addEventListener('click', async () => {
-            const params = new URLSearchParams(window.location.search);
-            const redirectUrl = params.get('redirectUrl') || '/protected';
-
-            // Pass the redirect URL as a query parameter to the server-side callback
-            const callbackUrl = `/callback?redirectUrl=${encodeURIComponent(redirectUrl)}`;
-            oktaAuth.options.redirectUri = callbackUrl;
-
-            await oktaAuth.signInWithRedirect();
+            await auth0.loginWithRedirect();
         });
     </script>
 </body>
