@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login with Okta</title>
+</head>
+<body>
+    <h1>Login with Okta</h1>
+    <button id="login-btn">Login</button>
+
+    <script src="https://cdn.jsdelivr.net/npm/@okta/okta-auth-js@5"></script>
+    <script>
+        const oktaAuth = new OktaAuth({
+            clientId: 'YOUR_CLIENT_ID',
+            issuer: 'YOUR_ISSUER_URL',
+            redirectUri: 'http://localhost:3000/callback'
+        });
+
+        document.getElementById('login-btn').addEventListener('click', async () => {
+            const params = new URLSearchParams(window.location.search);
+            const redirectUrl = params.get('redirectUrl') || '/protected';
+
+            // Pass the redirect URL as a query parameter to the server-side callback
+            const callbackUrl = `/callback?redirectUrl=${encodeURIComponent(redirectUrl)}`;
+            oktaAuth.options.redirectUri = callbackUrl;
+
+            await oktaAuth.signInWithRedirect();
+        });
+    </script>
+</body>
+</html>
