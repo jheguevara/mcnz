@@ -9,13 +9,14 @@
     <h1>Login with Okta</h1>
     <button id="login-btn">Login</button>
 
-    <!-- <script src="https://cdn.jsdelivr.net/npm/@okta/okta-auth-js@5"></script> -->
+    <!-- Load Okta Auth JS from the correct CDN -->
     <script src="https://global.oktacdn.com/okta-auth-js/6.6.0/okta-auth-js.min.js"></script>
     <script>
-        const oktaAuth = new OktaAuth.OktaAuth({
-          clientId: 'YOUR_CLIENT_ID',
-          issuer: 'YOUR_ISSUER_URL',
-          redirectUri: 'https://kivensferrer.github.io/hide/callback'
+        // Instantiate OktaAuth directly
+        const oktaAuth = new OktaAuth({
+            clientId: 'YOUR_CLIENT_ID',
+            issuer: 'YOUR_ISSUER_URL',
+            redirectUri: 'http://localhost:3000/callback'
         });
 
         document.getElementById('login-btn').addEventListener('click', async () => {
