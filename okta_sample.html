@@ -23,7 +23,9 @@
     window.onload = async () => {
       auth0 = await createAuth0Client({
         domain: "dev-qirtwh6cktfuc8ap.us.auth0.com",
-        client_id: "CmiF5zKFREhl7eEmcL8p2z5vkU8Fbzk5"
+        client_id: "CmiF5zKFREhl7eEmcL8p2z5vkU8Fbzk5",
+        cacheLocation: 'localstorage', // Optional: to persist the user's session
+        useRefreshTokens: true // Optional: to use refresh tokens
       });
 
       const isAuthenticated = await auth0.isAuthenticated();
@@ -53,7 +55,7 @@
 
     const logout = () => {
       auth0.logout({
-        returnTo: window.location.origin
+        localOnly: true // Ensures it logs out only locally
       });
       document.getElementById("btn-logout").style.display = "none";
       document.getElementById("btn-login").style.display = "block";
