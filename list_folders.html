@@ -3,26 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>List of Folders in 'apps'</title>
+    <title>List of Folders and app.md Content in 'apps'</title>
 </head>
 <body>
-    <h1>Folders in 'apps'</h1>
-    <ul id="folder-list"></ul>
+    <h1>Folders in 'apps' and app.md Content</h1>
+    <div id="folders-container"></div>
 
     <script>
         async function listFolders() {
             const response = await fetch('https://api.github.com/repos/kivensferrer/hide/contents/apps');
-            const data = await response.json();
+            const folders = await response.json();
 
-            const folderList = document.getElementById('folder-list');
+            const foldersContainer = document.getElementById('folders-container');
             
-            data.forEach(item => {
-                if (item.type === 'dir') {
-                    const listItem = document.createElement('li');
-                    listItem.textContent = item.name;
-                    folderList.appendChild(listItem);
+            for (const folder of folders) {
+                if (folder.type === 'dir') {
+                    // Create a section for each folder
+                    const folderSection = document.createElement('div');
+                    folderSection.style.marginBottom = '20px';
+                    
+                    // Folder name
+                    const folderName = document.createElement('h2');
+                    folderName.textContent = folder.name;
+                    folderSection.appendChild(folderName);
+
+                    // Fetch app.md content
+                    const appMdResponse = await fetch(`https://api.github.com/repos/kivensferrer/hide/contents/apps/${folder.name}/app.md`);
+                    const appMdData = await appMdResponse.json();
+                    const appMdContent = atob(appMdData.content);
+
+                    // Display app.md content
+                    const appMdPre = document.createElement('pre');
+                    appMdPre.textContent = appMdContent;
+                    folderSection.appendChild(appMdPre);
+
+                    foldersContainer.appendChild(folderSection);
                 }
-            });
+            }
         }
 
         listFolders();
