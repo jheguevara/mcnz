@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/hide/apps/jira-ticket-creator/static/css/main.3dad212c.css",
-    "main.js": "/hide/apps/jira-ticket-creator/static/js/main.be923fa5.js",
+    "main.js": "/hide/apps/jira-ticket-creator/static/js/main.70a4c074.js",
     "static/js/453.1b972bf8.chunk.js": "/hide/apps/jira-ticket-creator/static/js/453.1b972bf8.chunk.js",
     "index.html": "/hide/apps/jira-ticket-creator/index.html",
     "main.3dad212c.css.map": "/hide/apps/jira-ticket-creator/static/css/main.3dad212c.css.map",
-    "main.be923fa5.js.map": "/hide/apps/jira-ticket-creator/static/js/main.be923fa5.js.map",
+    "main.70a4c074.js.map": "/hide/apps/jira-ticket-creator/static/js/main.70a4c074.js.map",
     "453.1b972bf8.chunk.js.map": "/hide/apps/jira-ticket-creator/static/js/453.1b972bf8.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.3dad212c.css",
-    "static/js/main.be923fa5.js"
+    "static/js/main.70a4c074.js"
   ]
 }
