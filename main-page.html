@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+</head>
+<body>
+    <h1>Main Page</h1>
+
+    <!-- Dropdown to select which embedded page to load -->
+    <select id="page-selector">
+        <option value="embedded-page-1.html">Embedded Page 1</option>
+        <option value="embedded-page-2.html">Embedded Page 2</option>
+    </select>
+
+    <!-- Div to load the embedded page content -->
+    <div id="embedded-content"></div>
+
+    <script>
+        const pageSelector = document.getElementById('page-selector');
+        const embeddedContent = document.getElementById('embedded-content');
+
+        function loadPage(pageUrl) {
+            fetch(pageUrl)
+                .then(response => response.text())
+                .then(data => {
+                    // Replace the content of the embedded content div with the loaded HTML
+                    embeddedContent.innerHTML = data;
+                })
+                .catch(error => console.error('Error loading embedded content:', error));
+        }
+
+        // Initial load of the first page
+        loadPage(pageSelector.value);
+
+        // Load the selected page when the dropdown changes
+        pageSelector.addEventListener('change', function() {
+            loadPage(this.value);
+        });
+    </script>
+</body>
+</html>
