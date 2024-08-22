@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ page.title | default: "Gallery" }}</title>
+    <script src="https://cdn.auth0.com/js/auth0-spa-js/1.18/auth0-spa-js.production.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -18,6 +19,7 @@
             flex: 1 1 calc(33.333% - 20px);
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             border: 1px solid #ddd;
+            display: none; /* Hide all items by default */
         }
         .gallery-item iframe {
             width: 100%;
@@ -31,7 +33,6 @@
             margin: 0;
         }
     </style>
-    <script src="https://cdn.auth0.com/js/auth0-spa-js/1.18/auth0-spa-js.production.js"></script>
 </head>
 <body>
     <header>
@@ -45,12 +46,13 @@
 
     <div class="gallery">
         {% for option in page.options %}
-        <div class="gallery-item">
+        <div class="gallery-item" data-show="{{ option.show }}">
             <h3>{{ option.name }}</h3>
             <iframe src="{{ option.url }}" title="{{ option.name }}"></iframe>
         </div>
         {% endfor %}
     </div>
+    
     <script type="text/javascript">
         var auth0 = null;
     
@@ -73,6 +75,16 @@
             document.getElementById("btn-login").style.display = "block";
             document.getElementById("btn-logout").style.display = "none";
           }
+
+          // Display gallery items based on authentication status
+          document.querySelectorAll('.gallery-item').forEach(item => {
+            const showAttribute = item.getAttribute('data-show');
+            
+            if (showAttribute === 'Show everytime' || 
+                (showAttribute === 'Show only when Authenticated' && isAuthenticated)) {
+              item.style.display = 'block';
+            }
+          });
         };
     
         const login = async () => {
@@ -82,6 +94,18 @@
             document.getElementById("profile").innerText = `Hello, ${user.name}`;
             document.getElementById("btn-logout").style.display = "block";
             document.getElementById("btn-login").style.display = "none";
+
+            // Re-check authentication and update the gallery display
+            const isAuthenticated = true;
+            document.querySelectorAll('.gallery-item').forEach(item => {
+              const showAttribute = item.getAttribute('data-show');
+
+              if (showAttribute === 'Show everytime' || 
+                  (showAttribute === 'Show only when Authenticated' && isAuthenticated)) {
+                item.style.display = 'block';
+              }
+            });
+
           } catch (error) {
             console.error("Login failed", error);
           }
@@ -94,7 +118,17 @@
           document.getElementById("btn-logout").style.display = "none";
           document.getElementById("btn-login").style.display = "block";
           document.getElementById("profile").innerText = "";
+
+          // Re-check authentication and update the gallery display
+          const isAuthenticated = false;
+          document.querySelectorAll('.gallery-item').forEach(item => {
+            const showAttribute = item.getAttribute('data-show');
+
+            if (showAttribute !== 'Show everytime') {
+              item.style.display = 'none';
+            }
+          });
         };
-      </script>
+    </script>
 </body>
 </html>
