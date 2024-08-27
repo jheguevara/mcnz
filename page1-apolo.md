@@ -5,6 +5,7 @@ header_title: "Make cool Landing pages with Apolo"
 header_subtitle: "Build beautiful and effective landing pages effortlessly."
 header_button_text: "Get Started"
 header_button_link: "#get-started"
+header_background: "/assets/images/custom-header-bg.png"  # Optional
 
 features:
   - title: "Feature One"
