@@ -8,7 +8,7 @@
 </head>
 <body>
     <!-- Header Section -->
-    <header class="header-section" style="background-image: url('{{ '/assets/images/header-bg.png' | relative_url }}');">
+    <header class="header-section" style="background-image: url('{{ page.header_background | default: '/assets/images/header-bg.png' | relative_url }}');">
         <div class="container">
             <h1>{{ page.header_title }}</h1>
             <p>{{ page.header_subtitle }}</p>
@@ -22,7 +22,7 @@
             <div class="features-grid">
                 {% for feature in page.features %}
                 <div class="feature-item">
-                    <img src="{{ feature.icon }}" alt="{{ feature.title }}">
+                    <img src="{{ feature.icon | relative_url }}" alt="{{ feature.title }}">
                     <h3>{{ feature.title }}</h3>
                     <p>{{ feature.description }}</p>
                 </div>
@@ -38,7 +38,7 @@
             <div class="why-choose-us-grid">
                 {% for item in page.why_choose_us_items %}
                 <div class="why-choose-us-item">
-                    <img src="{{ item.icon }}" alt="{{ item.title }}">
+                    <img src="{{ item.icon | relative_url }}" alt="{{ item.title }}">
                     <h3>{{ item.title }}</h3>
                     <p>{{ item.description }}</p>
                 </div>
@@ -71,7 +71,7 @@
             <div class="team-grid">
                 {% for member in page.team_members %}
                 <div class="team-member">
-                    <img src="{{ member.photo }}" alt="{{ member.name }}">
+                    <img src="{{ member.photo | relative_url }}" alt="{{ member.name }}">
                     <h3>{{ member.name }}</h3>
                     <p>{{ member.position }}</p>
                 </div>
