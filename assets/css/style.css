@@ -1,0 +1,42 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+.header-section {
+    color: white;
+    text-align: center;
+    padding: 100px 0;
+}
+
+.features-grid, .why-choose-us-grid, .pricing-grid, .team-grid {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+}
+
+.feature-item, .why-choose-us-item, .pricing-plan, .team-member {
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: #FF3366;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.footer-section {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+}
