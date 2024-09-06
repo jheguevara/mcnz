@@ -24,9 +24,9 @@ blurb: "Welcome to the applications dashboard."
 			  <div class="single-testimonial">
 				<div class="top-section">
 					<i class="lni lni-ux"></i>
-					<h3><a href="{{ page.url }}">{{ page.title }}</a>
+					<h3><a href="/hide/{{ page.url }}">{{ page.title }}</a>
 						
-						<span><a href="{{ page.url }}">Get Started!</a></span>
+						<span><a href="/hide/{{ page.url }}">Get Started!</a></span>
 					</h3>
 				</div>
 				<p>{{ page.blurb }}</p>
