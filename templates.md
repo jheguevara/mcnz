@@ -12,7 +12,7 @@ layout: "minimal"
                     <!-- Start Single Clients -->
                     <div class="single-client">
 					<a href="/hide/blue.html">
-                        <img src="./hide/assets/images/themes/blue.png" alt="#">
+                        <img src="/hide/assets/images/themes/blue.png" alt="#">
 					</a>
                     </div>
                     <!-- End Single Clients -->
@@ -26,7 +26,7 @@ layout: "minimal"
                     <!-- Start Single Clients -->
                     <div class="single-client">
 					<a href="/hide/lightblue.html">
-                        <img src="../hide/assets/images/themes/lightblue.png" alt="#">
+                        <img src="/hide/assets/images/themes/lightblue.png" alt="#">
 					</a>
                     </div>
                     <!-- End Single Clients -->
