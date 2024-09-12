@@ -55,6 +55,17 @@
     
     <script type="text/javascript">
         var auth0 = null;
+
+        // Function to set a cookie
+        function setCookie(name, value, days) {
+            var expires = "";
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+        }
     
         window.onload = async () => {
           auth0 = await createAuth0Client({
@@ -72,6 +83,7 @@
             const user = await auth0.getUser();
             console.log(`USER DETAILS: ${JSON.stringify(user, null, 2)}`)
             document.getElementById("profile").innerText = `Hello, ${user.name}`;
+            setCookie("user_email", user.email, 7); // Save the user's name in cookies for 7 days
           } else {
             document.getElementById("btn-login").style.display = "block";
             document.getElementById("btn-logout").style.display = "none";
