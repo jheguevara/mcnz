@@ -125,7 +125,13 @@
           try {
             await auth0.loginWithPopup();
             const user = await auth0.getUser();
+            
+            console.log(`1USER DETAILS: ${JSON.stringify(user, null, 2)}`)
             document.getElementById("profile").innerText = `Hello, ${user.name}`;
+            console.log(`before setCookie`)
+            setCookie("userName", user.name, 7); // Save the user's name in cookies for 7 days
+            console.log(`before setCookie`)
+            // document.getElementById("profile").innerText = `Hello, ${user.name}`;
             document.getElementById("btn-logout").style.display = "block";
             document.getElementById("btn-login").style.display = "none";
 
