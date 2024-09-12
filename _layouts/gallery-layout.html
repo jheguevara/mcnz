@@ -58,20 +58,14 @@
 
         // Function to set a cookie with Secure and SameSite attributes
         function setCookie(name, value, days) {
-            console.log(`inside setCookie`)
-            try {
-              var expires = "";
-              if (days) {
-                  var date = new Date();
-                  date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-                  expires = "; expires=" + date.toUTCString();
-              }
-              // Secure flag is necessary when running on HTTPS (like GitHub Pages)
-              document.cookie = name + "=" + (value || "") + expires + "; path=/; SameSite=Lax; Secure";
-              console.log(`Successful setCookie`)
-            } catch (error) {
-              console.log(`error setCookie - ${error}`)
-            }
+          var expires = "";
+          if (days) {
+              var date = new Date();
+              date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+              expires = "; expires=" + date.toUTCString();
+          }
+          // Secure flag is necessary when running on HTTPS (like GitHub Pages)
+          document.cookie = name + "=" + (value || "") + expires + "; path=/; SameSite=Lax; Secure";
         }
 
         // Function to get a cookie by name
@@ -126,12 +120,8 @@
             await auth0.loginWithPopup();
             const user = await auth0.getUser();
             
-            console.log(`1USER DETAILS: ${JSON.stringify(user, null, 2)}`)
             document.getElementById("profile").innerText = `Hello, ${user.name}`;
-            console.log(`before setCookie`)
-            setCookie("userName", user.name, 7); // Save the user's name in cookies for 7 days
-            console.log(`before setCookie`)
-            // document.getElementById("profile").innerText = `Hello, ${user.name}`;
+            setCookie("email", user.email, 7); // Save the user's name in cookies for 7 days
             document.getElementById("btn-logout").style.display = "block";
             document.getElementById("btn-login").style.display = "none";
 
