@@ -23,7 +23,7 @@ blurb: "Welcome to the applications dashboard."
   
 			  <div class="single-testimonial">
 				<div class="top-section">
-					<i class="lni lni-ux"></i>
+					<a href="/hide/{{ page.html }}"><i class="lni lni-ux"></i></a>
 					<h3><a href="/hide/{{ page.url }}">{{ page.title }}</a>
 						
 						<span><a href="/hide/{{ page.url }}">Get Started!</a></span>
